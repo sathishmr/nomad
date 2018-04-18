@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+// DiscoverInterface is an interface for the Discover type in the go-discover
+// library. Using an interface allows for ease of testing.
 type DiscoverInterface interface {
 	Addrs(string, *log.Logger) ([]string, error)
 
@@ -26,6 +28,8 @@ type retryJoiner struct {
 	logger *log.Logger
 }
 
+// retryJoin is used to handle retrying a join until it succeeds or all retries
+// are exhausted.
 func (r *retryJoiner) RetryJoin(config *Config) {
 	if len(config.Server.RetryJoin) == 0 || !config.Server.Enabled {
 		return
